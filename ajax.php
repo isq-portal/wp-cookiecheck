@@ -1,9 +1,8 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'].'/wp-load.php';
-// require_once('gdpr-cookie-ajax.php');
 
-$GDPRCookieAjax = new GDPRCookieAjax();
-$GDPRCookie = new GDPRCookie();
+$ISQWPCookieAjax = new ISQWPCookieAjax();
+$ISQWPCookie = new ISQWPCookie();
 
 if (!isset($_POST['action'])) {
     header('HTTP/1.0 403 Forbidden');
@@ -13,7 +12,7 @@ if (!isset($_POST['action'])) {
 switch ($_POST['action']) {
     case 'hide':
         // Set cookie
-        GDPRCookieAjax::setCookie('scwCookieHidden', 'true', 52, 'weeks');
+        ISQWPCookieAjax::setCookie('isqWPCookieHidden', 'true', 52, 'weeks');
         header('Content-Type: application/json');
         die(json_encode(['success' => true]));
         break;
@@ -22,27 +21,27 @@ switch ($_POST['action']) {
         $return    = [];
 
         // Update if cookie allowed or not
-        $choices = GDPRCookieAjax::getCookie('scwCookie');
+        $choices = ISQWPCookieAjax::getCookie('isqWPCookie');
         if ($choices == false) {
             $choices = [];
-            $enabledCookies = $GDPRCookie->enabledSnippets();
+            $enabledCookies = $ISQWPCookie->enabledSnippets();
             foreach ($enabledCookies as $name => $label) {
-                $choices[$name] = $GDPRCookieAjax->getConfig('default_setting');
+                $choices[$name] = $ISQWPCookieAjax->getConfig('default_setting');
             }
-            GDPRCookieAjax::setCookie('scwCookie', GDPRCookieAjax::encrypt($choices), 52, 'weeks');
+            ISQWPCookieAjax::setCookie('isqWPCookie', ISQWPCookieAjax::encrypt($choices), 52, 'weeks');
         } else {
-            $choices = GDPRCookieAjax::decrypt($choices);
+            $choices = ISQWPCookieAjax::decrypt($choices);
         }
         $choices[$_POST['name']] = $_POST['value'] == 'true' ? 'enabled' : 'disabled';
 
         // Remove cookies if now disabled
         if ($choices[$_POST['name']] == 'disabled') {
-            $removeCookies = $GDPRCookieAjax->clearCookieGroup($_POST['name']);
+            $removeCookies = $ISQWPCookieAjax->clearCookieGroup($_POST['name']);
             $return['removeCookies'] = $removeCookies;
         }
 
-        $choices = GDPRCookieAjax::encrypt($choices);
-        GDPRCookieAjax::setCookie('scwCookie', $choices, 52, 'weeks');
+        $choices = ISQWPCookieAjax::encrypt($choices);
+        ISQWPCookieAjax::setCookie('isqWPCookie', $choices, 52, 'weeks');
 
         header('Content-Type: application/json');
         die(json_encode($return));
@@ -53,9 +52,9 @@ switch ($_POST['action']) {
 
         $removeCookies = [];
 
-        foreach ($GDPRCookie->enabledSnippets() as $cookie => $label) {
-            if (!$GDPRCookie->isAllowed($cookie)) {
-                $removeCookies = array_merge($removeCookies, $GDPRCookieAjax->clearCookieGroup($cookie));
+        foreach ($ISQWPCookie->enabledSnippets() as $cookie => $label) {
+            if (!$ISQWPCookie->isAllowed($cookie)) {
+                $removeCookies = array_merge($removeCookies, $ISQWPCookieAjax->clearCookieGroup($cookie));
             }
         }
         $return['removeCookies'] = $removeCookies;

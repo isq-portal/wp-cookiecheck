@@ -54,7 +54,6 @@
 }
 .gdpr-cookie-container:nth-child(4n)     { margin-right: 0; }
 .gdpr-cookie-container:nth-child(n + 5)  { margin-top: 12px; }
-/*.gdpr-cookie-container:nth-child(4)      { margin-top: 0; }*/
 .gdpr-cookie-container:nth-child(4n + 1) { clear: both; margin-left: 0; }
 .gdpr-cookie-header {
     background-color: #F5F5F5;

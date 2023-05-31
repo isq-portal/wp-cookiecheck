@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: GDPR Cookie
-Plugin URI: https://southcoastweb.co.uk/demos/scw-cookie.php
-Description: Add a cookie control popup on the footer of your website.
-Version: 1.0
-Author: South Coast Web Design Ltd
-Author URI: https://southcoastweb.co.uk/
+Plugin Name: ISQ WP Cookiecheck
+Plugin URI: https://github.com/isq-portal/wp-cookiecheck
+Description: Adds ISQ Custom Cookie Check PopUp on website footer to reach GDPR/DSGVO compliance
+Version: 0.0.1
+Author: ISQ BB IT Developers
+Author URI: https://www.isq-bb.de/wordpress/
 License: MIT
 */
 
@@ -14,9 +14,9 @@ if (!defined('WPINC')) {
     die;
 }
 
-include 'gdpr-cookie-ajax.php';
+include 'wp-cookiecheck-ajax.php';
 
-class GDPRCookie
+class ISQWPCookie
 {
     private $decisionMade = false;
 
@@ -25,7 +25,7 @@ class GDPRCookie
         global $wpdb;
         $this->wpdb = $wpdb;
 
-        $this->decisionMade = GDPRCookieAjax::getCookie('scwCookieHidden') == 'true';
+        $this->decisionMade = ISQWPCookieAjax::getCookie('isqWPCookieHidden') == 'true';
 
         if (!session_id()) {
             session_start();
@@ -33,7 +33,7 @@ class GDPRCookie
 
         if (isset($_POST['save-gdpr-cookie'])) {
             $this->saveChanges($_POST);
-            wp_redirect(admin_url('admin.php?page=gdpr-cookie'));
+            wp_redirect(admin_url('admin.php?page=wp-cookiecheck'));
             exit;
         }
 
@@ -91,9 +91,9 @@ class GDPRCookie
 
     public function getChoices()
     {
-        if (GDPRCookieAjax::getCookie('scwCookie') !== false) {
-            $cookie = GDPRCookieAjax::getCookie('scwCookie');
-            $cookie = GDPRCookieAjax::decrypt($cookie);
+        if (ISQWPCookieAjax::getCookie('isqWPCookie') !== false) {
+            $cookie = ISQWPCookieAjax::getCookie('isqWPCookie');
+            $cookie = ISQWPCookieAjax::decrypt($cookie);
             return $cookie;
         }
 
@@ -108,7 +108,7 @@ class GDPRCookie
     {
         array_push(
             $links,
-            '<a href="admin.php?page=gdpr-cookie">'.__('Settings').'</a>'
+            '<a href="admin.php?page=wp-cookiecheck">'.__('Settings').'</a>'
         );
         return $links;
     }
@@ -119,9 +119,9 @@ class GDPRCookie
             'ISQ Cookiecheck',
             'ISQ Cookiecheck',
             'manage_options',
-            'gdpr-cookie',
+            'wp-cookiecheck',
             array($this, 'displayAdminPage'),
-            plugins_url('gdpr-cookie/icon.png'),
+            plugins_url('wp-cookiecheck/icon.png'),
             100
         );
     }
@@ -169,16 +169,6 @@ class GDPRCookie
         }
 
         $this->config['showLiveChatMessage'] = true;
-
-        // CSS
-        // wp_register_style('gdpr-public', plugin_dir_url(__FILE__).'html/public/css/public.css');
-        // wp_register_style('gdpr-public-responsive', plugin_dir_url(__FILE__).'html/public/css/public.responsive.css');
-        // wp_enqueue_style('gdpr-public');
-        // wp_enqueue_style('gdpr-public-responsive');
-
-        // JS
-        // wp_register_script('gdpr-public', plugin_dir_url(__FILE__).'html/public/js/public.js');
-        // wp_enqueue_script('gdpr-public');
 
         // HTML
         include 'html/public/popup.php';
@@ -282,13 +272,13 @@ class GDPRCookie
     }
 }
 // Initialise out class
-add_action('init', 'initialise_gdpr_cookie');
+add_action('init', 'initialise_isqwp_cookie');
 
 include 'classes/bootstrap.php';
-register_activation_hook(__FILE__, array('GDPRCookie\Activate', 'activate'));
-register_uninstall_hook(__FILE__, array('GDPRCookie\Uninstall', 'uninstall'));
+register_activation_hook(__FILE__, array('ISQWPCookie\Activate', 'activate'));
+register_uninstall_hook(__FILE__, array('ISQWPCookie\Uninstall', 'uninstall'));
 
-function initialise_gdpr_cookie()
+function initialise_isqwp_cookie()
 {
-    new GDPRCookie();
+    new ISQWPCookie();
 }

@@ -1,9 +1,8 @@
 <?php
-class GDPRCookieAjax
+class ISQWPCookieAjax
 {
     public function __construct()
     {
-        // require $_SERVER['DOCUMENT_ROOT'].'/wp-load.php';
         global $wpdb;
         $this->wpdb = $wpdb;
     }
@@ -40,14 +39,18 @@ class GDPRCookieAjax
             WHERE s.slug = '$slug'"
         );
 
-        foreach ($clearCookies as $cookieObj) {
-            $cookie = [
-                'name'   => $this->replaceSpecials($cookieObj->name),
-                'path'   => $this->replaceSpecials($cookieObj->path),
-                'domain' => $this->replaceSpecials($cookieObj->domain),
-            ];
-            self::destroyCookie($cookie['name'], $cookie['path'], $cookie['domain']);
-            $return[] = $cookie;
+        if (!empty($clearCookies)) {
+            foreach ($clearCookies as $cookieObj) {
+                $cookie = [
+                    'name' => $this->replaceSpecials($cookieObj->name),
+                    'path' => $this->replaceSpecials($cookieObj->path),
+                    'domain' => $this->replaceSpecials($cookieObj->domain),
+                ];
+                self::destroyCookie($cookie['name'], $cookie['path'], $cookie['domain']);
+                $return[] = $cookie;
+            }
+        } else {
+            $return = [];
         }
 
         return $return;

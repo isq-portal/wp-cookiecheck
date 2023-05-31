@@ -1,6 +1,6 @@
 <form method="POST">
     <div class="wrap">
-        <h1>GDPR Cookie</h1>
+        <h1>ISQ Cookiecheck</h1>
         <?php if (isset($message)) { ?>
             <div class="notice <?php echo $message[1]; ?>">
                 <p><?php echo $message[0]; ?></p>
@@ -143,8 +143,8 @@
                 >
                 <hr>
                 <div class="fine-print">
-                    Developed by <a href="https://southcoastweb.co.uk" target="_blank">South Coast Web Ltd</a><br>
-                    Version: <?php echo get_plugin_data(__DIR__.'/../../gdpr-cookie.php')['Version']; ?>
+                    Developed by <a href="https://www.isq-bb.de/wordpress/" target="_blank">ISQ BB IT</a><br>
+                    Version: <?php echo get_plugin_data(__DIR__.'/../../wp-cookiecheck.php')['Version']; ?>
                 </div>
             </div>
         </div>

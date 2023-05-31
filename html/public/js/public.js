@@ -5,7 +5,7 @@ if (!jQuery('.scw-cookie').hasClass('scw-cookie-out')) {
 function isqCookieHide()
 {
     jQuery.post(
-        window.gdprCookieDir+'ajax.php',
+        window.isqCookieDir+'ajax.php',
         {
             action : 'hide'
         }
@@ -26,9 +26,17 @@ function isqCookieDetails()
     jQuery('.scw-cookie-details').slideToggle();
 }
 
-function scwCookieToggle(element)
+function isqCookieToggle(element)
 {
     jQuery(element).closest('.scw-cookie-toggle').find('input[type="checkbox"]').click();
+}
+
+function isqCookieActivateAll()
+{
+    var objectsInserted = jQuery('.isq-toggle-switch');
+    for (var obj of objectsInserted) {
+        obj.click();
+    }
 }
 
 function isqCookiePanelToggle()
@@ -52,11 +60,12 @@ jQuery(document).ready(function($){
         }
     });
 });
+
 jQuery(document).on('change', '.scw-cookie-toggle input[type="checkbox"]', function(){
     jQuery(this).closest('.scw-cookie').addClass('changed');
     jQuery(this).closest('.scw-cookie-switch').toggleClass('checked');
     jQuery.post(
-        window.gdprCookieDir+'ajax.php',
+        window.isqCookieDir+'ajax.php',
         {
             action : 'toggle',
             name   : jQuery(this).attr('name'),
@@ -84,12 +93,14 @@ jQuery(document).ready(function($){
 });
 
 jQuery(document).ready(function($){
+
     jQuery.post(
-        window.gdprCookieDir+'ajax.php',
+        window.isqCookieDir+'ajax.php',
         {
             action : 'load',
         }
     ).done(function(data){
+
         if (data.hasOwnProperty('removeCookies')) {
             jQuery.each(data.removeCookies, function(key, cookie){
                 Cookies.remove(cookie.name);

@@ -5,12 +5,12 @@ body.scw-cookie-in {
 .scw-cookie-settings,
 .scw-cookie-policy,
 .scw-cookie-btn,
-.scw-cookie-settings .gdprc-icon,
+.scw-cookie-settings .isqc-icon,
 .scw-cookie-switch {
     transition: all .3s ease;
 }
 
-.gdprc-icon {
+.isqc-icon {
     background-image: url(../img/icons.png);
     background-repeat: no-repeat;
     background-size: auto 100%;
@@ -18,9 +18,9 @@ body.scw-cookie-in {
     width: 25px;
     display: inline-block;
 }
-.gdprc-icon.gdprc-icon-cookie   { background-position: 0 0;     }
-.gdprc-icon.gdprc-icon-policy   { background-position: -25px 0; }
-.gdprc-icon.gdprc-icon-settings { background-position: -50px 0; }
+.isqc-icon.isqc-icon-cookie   { background-position: 0 0;     }
+.isqc-icon.isqc-icon-policy   { background-position: -25px 0; }
+.isqc-icon.isqc-icon-settings { background-position: -50px 0; }
 
 .scw-cookie-panel-toggle {
     background: inherit;
@@ -118,19 +118,19 @@ body.scw-cookie-in {
     text-align: center;
     width: 20px;
 }
-.scw-cookie-settings .gdprc-icon,
-.scw-cookie-policy .gdprc-icon {
+.scw-cookie-settings .isqc-icon,
+.scw-cookie-policy .isqc-icon {
     margin-top: -5px;
     opacity: .7;
     position: relative;
     top: 7px;
 }   
-.scw-cookie-settings:hover .gdprc-icon,
-.scw-cookie-policy:hover .gdprc-icon {
+.scw-cookie-settings:hover .isqc-icon,
+.scw-cookie-policy:hover .isqc-icon {
     opacity: 1;
 }
-.scw-cookie-settings .gdprc-icon,
-.scw-cookie-policy .gdprc-icon {
+.scw-cookie-settings .isqc-icon,
+.scw-cookie-policy .isqc-icon {
     margin-top: -2.5px;
 }
 .scw-cookie-settings {
@@ -152,10 +152,10 @@ body.scw-cookie-in {
 .scw-cookie-toggle {
     border: solid 1px;
     box-sizing: border-box;
-    float: left;
+    /* float: left; */
     margin-top: 10px;
     padding: 5px;
-    width: calc(50% - 5px);
+    /* width: calc(50% - 5px); */
 }
 /**
 .scw-cookie-toggle:nth-child(even) {

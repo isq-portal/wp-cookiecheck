@@ -1,5 +1,5 @@
 <?php
-namespace GDPRCookie;
+namespace IsqPortal\WpCookiecheck;
 
 // If this file is called directly, abort.
 if (!defined('WPINC')) {
@@ -11,14 +11,16 @@ class Activate
 
     public function activate()
     {
+        /**
         $dbVersion          = '0.0.4';
-        $installedDbVersion = get_option("scw_gdpr_db_version");
+        $installedDbVersion = get_option("isq_cookiecheck_db_version");
         if ($installedDbVersion != $dbVersion) {
             self::clearDatabaseTables();
             self::buildDatabaseTables();
             self::importDatabaseData();
-            update_option('scw_gdpr_db_version', $dbVersion);
+            update_option('isq_cookiecheck_db_version', $dbVersion);
         }
+         **/
     }
 
     private function clearDatabaseTables()
@@ -151,67 +153,7 @@ class Activate
                         'description' => 'Your unique tracking ID provided by Google',
                     ),
                 ),
-            ),
-            array(
-                'title'   => 'Smartsupp',
-                'slug'    => 'smartsupp',
-                'label'   => 'Smartsupp - Live chat',
-                'display' => '0',
-                'cookies' => array(
-                    array('name' => 'Smartlookcookie'),
-                    array('name' => 'ssupp.chatid'),
-                    array('name' => 'ssupp.vid'),
-                ),
-                'variables' => array(
-                    array(
-                        'label'       => 'Tracking ID',
-                        'slug'        => 'tracking_id',
-                        'description' => 'Your unique tracking ID provided by Smartsupp',
-                    ),
-                ),
-            ),
-            array(
-                'title'   => 'Hotjar',
-                'slug'    => 'hotjar',
-                'label'   => 'Hotjar - Website heatmaps',
-                'display' => '0',
-                'cookies' => array(
-                    array('name' => '_hjClosedSurveyInvites'),
-                    array('name' => '_hjDonePolls'),
-                    array('name' => '_hjMinimizedPolls'),
-                    array('name' => '_hjDoneTestersWidgets'),
-                    array('name' => '_hjMinimizedTestersWidgets'),
-                    array('name' => '_hjIncludedInSample'),
-                ),
-                'variables' => array(
-                    array(
-                        'label'       => 'Tracking ID',
-                        'slug'        => 'tracking_id',
-                        'description' => 'Your unique tracking ID provided by Hotjar',
-                    ),
-                ),
-            ),
-            array(
-                'title'   => 'Tawk.to',
-                'slug'    => 'tawkto',
-                'label'   => 'Tawk.to - Live chat',
-                'display' => '0',
-                'cookies' => array(
-                    'defaults' => array(
-                        'domain' => '.{* config.domain_name *}',
-                    ),
-                    array('name' => '__tawkuuid'),
-                    array('name' => 'TawkConnectionTime'),
-                    array('name' => 'Tawk_{* snippets.tawkto.variables.tracking_id|hyp-unds *}'),
-                ),
-                'variables' => array(
-                    array(
-                        'label'       => 'Tracking ID',
-                        'slug'        => 'tracking_id',
-                        'description' => 'Your unique tracking ID provided by Tawk.to',
-                    ),
-                ),
-            ),
+            )
         );
 
         foreach ($snippets as $snippet) {

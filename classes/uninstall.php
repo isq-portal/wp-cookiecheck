@@ -1,5 +1,5 @@
 <?php
-namespace GDPRCookie;
+namespace IsqPortal\WpCookiecheck;
 
 // If this file is called directly, abort.
 if (!defined('WPINC')) {
@@ -10,7 +10,9 @@ class Uninstall
 {
     public function uninstall()
     {
-        self::dropDatabaseTables();    
+        /**
+        self::dropDatabaseTables();
+         **/
     }
 
     private function dropDatabaseTables() {
