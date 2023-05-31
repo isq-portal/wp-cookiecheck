@@ -1,5 +1,6 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'].'/wp-load.php';
+// require $_SERVER['DOCUMENT_ROOT'].'/wp-load.php';
+require dirname(__FILE__).'/../../../wp-load.php';
 
 $ISQWPCookieAjax = new ISQWPCookieAjax();
 $ISQWPCookie = new ISQWPCookie();
