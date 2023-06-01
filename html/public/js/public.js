@@ -12,7 +12,7 @@ function isqCookieHide()
     ).done(function(data){
         if (data.hasOwnProperty('success') && data.success) {
             jQuery('.scw-cookie').addClass('scw-cookie-slide-out');
-            jQuery(document).find('body').removeClass('scw-cookie-in');            
+            jQuery(document).find('body').removeClass('scw-cookie-in');
         }
 
         if (jQuery('.scw-cookie').hasClass('changed')) {
@@ -35,8 +35,14 @@ function isqCookieActivateAll()
 {
     var objectsInserted = jQuery('.isq-toggle-switch');
     for (var obj of objectsInserted) {
-        obj.click();
+        // check if already checked?
+        let toggleSwitchCheck = jQuery(obj).closest('.scw-cookie-toggle').find('input[type="checkbox"]');
+        if (toggleSwitchCheck.prop('checked') != true) {
+            obj.click();
+        }
     }
+    // short timeout, wait for async ajax to finish
+    setTimeout(isqCookieHide, 500);
 }
 
 function isqCookiePanelToggle()

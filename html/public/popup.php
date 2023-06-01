@@ -1,7 +1,7 @@
 <link href="<?php echo plugin_dir_url(__FILE__).'css/public.css'; ?>" rel="stylesheet" type="text/css">
 <div class="scw-cookie<?= $this->decisionMade ? ' scw-cookie-out' : ''; ?>">
     <div class="scw-cookie-panel-toggle scw-cookie-panel-toggle-<?= $this->config['panel_toggle_position']; ?>"
-        onclick="isqCookiePanelToggle()">
+         onclick="isqCookiePanelToggle()">
         <span class="isqc-icon isqc-icon-cookie"></span>
     </div>
     <div class="scw-cookie-content">
@@ -17,8 +17,8 @@
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="btn btn-success" onclick="isqCookieActivateAll(); isqCookieHide();">Alle akzeptieren</div>
-                        <div class="btn btn-danger" onclick="isqCookieHide()">Speichern</div>
+                        <div class="btn btn-success" onclick="isqCookieActivateAll();">Alle akzeptieren</div>
+                        <div class="btn btn-danger" onclick="isqCookieHide();">Speichern</div>
                     </div>
                 </div>
             </div>
@@ -38,8 +38,8 @@
                         <div class="scw-cookie-name isq-toggle-switch" onclick="isqCookieToggle(this)"><?= $label; ?></div>
                         <label class="scw-cookie-switch<?= $this->isAllowed($slug) ? ' checked' : ''; ?>">
                             <input type="checkbox"
-                            name="<?= $slug; ?>"
-                            <?= $this->isAllowed($slug) ? 'checked="checked"' : ''; ?>
+                                   name="<?= $slug; ?>"
+                                <?= $this->isAllowed($slug) ? 'checked="checked"' : ''; ?>
                             >
                             <div></div>
                         </label>
