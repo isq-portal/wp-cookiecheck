@@ -99,7 +99,7 @@ class ISQWPCookie
 
         $return = [];
         foreach ($this->enabledSnippets() as $name => $label) {
-            $return[$name] = $this->config['default_setting'];
+            $return[$name] = ($this->config['default_setting'] ?? '');
         }
         return $return;
     }
