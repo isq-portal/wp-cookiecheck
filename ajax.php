@@ -6,8 +6,10 @@ $ISQWPCookieAjax = new ISQWPCookieAjax();
 $ISQWPCookie = new ISQWPCookie();
 
 if (!isset($_POST['action'])) {
+    // no post action, send forbidden header and exit
     header('HTTP/1.0 403 Forbidden');
-    throw new Exception("Action not specified");
+    exit();
+    // throw new Exception("Action not specified");
 }
 
 switch ($_POST['action']) {
