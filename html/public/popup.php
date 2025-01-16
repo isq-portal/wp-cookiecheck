@@ -1,3 +1,8 @@
+<?php
+if ($_SERVER["SERVER_NAME"] == "isq.berlin") {
+    exit();
+};
+?>
 <link href="<?php echo plugin_dir_url(__FILE__).'css/public.css'; ?>" rel="stylesheet" type="text/css">
 <div class="scw-cookie<?= $this->decisionMade ? ' scw-cookie-out' : ''; ?>">
     <div class="scw-cookie-panel-toggle scw-cookie-panel-toggle-<?= $this->config['panel_toggle_position']; ?>"
