@@ -1,5 +1,5 @@
 <?php
-if (($_SERVER["SERVER_NAME"] == "isq.berlin") || ($_SERVER["SERVER_NAME"] == "www.isq.berlin")) {
+if (($_SERVER["SERVER_NAME"] == "isq-bb.de") || ($_SERVER["SERVER_NAME"] == "www.isq-bb.de")) {
     exit();
 };
 ?>

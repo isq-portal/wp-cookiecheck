@@ -143,7 +143,7 @@
                 >
                 <hr>
                 <div class="fine-print">
-                    Developed by <a href="https://www.isq-bb.de/wordpress/" target="_blank">ISQ BB IT</a><br>
+                    Developed by <a href="https://www.isq.berlin/wordpress/" target="_blank">ISQ BB IT</a><br>
                     Version: <?php echo get_plugin_data(__DIR__.'/../../wp-cookiecheck.php')['Version']; ?>
                 </div>
             </div>

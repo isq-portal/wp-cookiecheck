@@ -5,7 +5,7 @@ Plugin URI: https://github.com/isq-portal/wp-cookiecheck
 Description: Adds ISQ Custom Cookie Check PopUp on website footer to reach GDPR/DSGVO compliance
 Version: 0.0.1
 Author: ISQ BB IT Developers
-Author URI: https://www.isq-bb.de/wordpress/
+Author URI: https://www.isq.berlin/wordpress/
 License: MIT
 */
 
